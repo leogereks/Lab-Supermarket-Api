@@ -7,7 +7,7 @@
 # instruções para iniciar o projeto
 
 - Faça download do arquivo zip do repositorio
-- Faça extraçao do zip e abra através de dua IDE de preferencia 
+- Faça extraçao do zip e abra através de sua IDE de preferencia 
 - Crie um banco de dados PostgreSQL referente configuraçoes do application.properties
 
 # Entity-Relationship Diagram (ERD)
