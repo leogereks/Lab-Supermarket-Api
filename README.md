@@ -4,7 +4,7 @@
 - Projeto realizado com SpringBoot
 
 
-# instruções para iniciar o projeto
+# Instruções para iniciar o projeto
 
 - Faça download do arquivo zip do repositorio
 - Faça extraçao do zip e abra através de sua IDE de preferencia 
