@@ -5,6 +5,7 @@ import br.com.futurodev.labsupermarketapi.repository.ProdutoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -16,11 +17,11 @@ public class ProdutoService {
     public List<Produto> ListarProdutos() {
         return produtoRepo.findAll();
     }
-
+    @Transactional
     public Produto salva(Produto produto) {
         return produtoRepo.save(produto);
     }
-
+    @Transactional
     public void deleta(Long idProduto) {
         produtoRepo.deleteById(idProduto);
     }

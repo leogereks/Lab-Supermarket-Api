@@ -1,6 +1,5 @@
 package br.com.futurodev.labsupermarketapi.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,8 +18,8 @@ public class Produto implements Serializable {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "idCategoria", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_categoria"))
-    private Categoria categoria;
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_categoria"))
+    private Categoria categoriaProduto;
 
     @Column(nullable = false)
     private String nomeProduto;

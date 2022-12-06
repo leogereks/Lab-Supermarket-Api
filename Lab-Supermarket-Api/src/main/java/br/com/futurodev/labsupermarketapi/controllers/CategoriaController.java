@@ -23,6 +23,26 @@ public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 
+    private CategoriaRM toModel(Categoria categoria){
+        CategoriaRM categoriaRM = new CategoriaRM();
+        categoriaRM.setId(categoria.getId());
+        categoriaRM.setNome(categoria.getNomeCategoria());
+        categoriaRM.setDescricao(categoria.getDescricaoCategoria());
+        return categoriaRM;
+    }
+
+    private List<CategoriaRM> toCollectionModel(List<Categoria> categorias){
+        return categorias.stream().map(categoria -> toModel(categoria)).collect(Collectors.toList());
+    }
+
+    private Categoria toDomainObject(CategoriaInput categoriaInput){
+        Categoria categoria = new Categoria();
+        categoria.setId(categoriaInput.getIdInput());
+        categoria.setNomeCategoria(categoriaInput.getNomeInput());
+        categoria.setDescricaoCategoria(categoriaInput.getDescricaoInput());
+        return categoria;
+    }
+
     @ApiOperation("Listar todas as categorias cadastradas")
     @GetMapping(value = "/lista", produces = "application/json")
     public ResponseEntity<List<CategoriaRM>> listaCategorias() {
@@ -38,12 +58,12 @@ public class CategoriaController {
         return new ResponseEntity<CategoriaRM>(toModel(categoria), HttpStatus.CREATED);
     }
 
-    @ApiOperation("Atualiza categoria")
-    @PostMapping(value = "/",produces = "application/json")
-    public ResponseEntity<CategoriaRM>atualiza(@RequestBody CategoriaInput categoriaInput) {
-        Categoria categoria = categoriaService.salva(toDomainObject(categoriaInput));
-        return new ResponseEntity<CategoriaRM>(toModel(categoria), HttpStatus.OK);
-    }
+//    @ApiOperation("Atualiza categoria")
+//    @PostMapping(value = "/",produces = "application/json")
+//    public ResponseEntity<CategoriaRM>atualiza(@RequestBody CategoriaInput categoriaInput) {
+//        Categoria categoria = categoriaService.salva(toDomainObject(categoriaInput));
+//        return new ResponseEntity<CategoriaRM>(toModel(categoria), HttpStatus.OK);
+//    }
 
     @ApiOperation("Deletar categoria")
     @DeleteMapping(value = "/")
@@ -75,26 +95,6 @@ public class CategoriaController {
         Categoria categoria = categoriaService.busca(idCategoria);
         CategoriaRM categoriaRM = toModel(categoria);
         return new ResponseEntity<CategoriaRM>(categoriaRM, HttpStatus.OK);
-    }
-
-    private CategoriaRM toModel(Categoria categoria){
-        CategoriaRM categoriaRM = new CategoriaRM();
-        categoriaRM.setId(categoria.getId());
-        categoriaRM.setNomeCategoria(categoria.getNomeCategoria());
-        categoriaRM.setDescricaoCategoria(categoria.getDescricaoCategoria());
-        return categoriaRM;
-    }
-
-    private List<CategoriaRM> toCollectionModel(List<Categoria> categorias){
-        return categorias.stream().map(categoria -> toModel(categoria)).collect(Collectors.toList());
-    }
-
-    private Categoria toDomainObject(CategoriaInput categoriaInput){
-        Categoria categoria = new Categoria();
-        categoria.setId(categoriaInput.getIdInput());
-        categoria.setNomeCategoria(categoriaInput.getNomeInput());
-        categoria.setDescricaoCategoria(categoriaInput.getDescricaoInput());
-        return categoria;
     }
 
 }

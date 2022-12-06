@@ -16,17 +16,33 @@ import java.util.stream.Collectors;
 
 @Api(tags = "Produtos")
 @RestController
-@RequestMapping(value = "/produto")
+@RequestMapping(value = "/produtos")
 public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
 
-    @ApiOperation("Valor das compras (produtos status 'true')")
-    @GetMapping(value = "/total")
-    public String totalCompras(){
-        Double total = produtoService.totalCompras();
-        return "O total das compras foi de R$ " + total;
+    private List<ProdutoRM> toCollectionModel(List<Produto> produtos){
+        return produtos.stream().map(produto -> toModel(produto)).collect(Collectors.toList());
+    }
+
+    private Produto toDomainObject(ProdutoInput produtoInput){
+        Produto produto = new Produto();
+        produto.setId(produtoInput.getId());
+        produto.setCategoriaProduto(produtoInput.getCategoriaProduto());
+        produto.setNomeProduto(produtoInput.getNomeProduto());
+        produto.setValorProduto(produtoInput.getValorProduto());
+        produto.setStatusProduto(produtoInput.isStatusProduto());
+        return produto;
+    }
+    private ProdutoRM toModel(Produto produto){
+        ProdutoRM produtoRM = new ProdutoRM();
+        produtoRM.setId(produto.getId());
+        produtoRM.setCategoria(produto.getCategoriaProduto());
+        produtoRM.setNome(produto.getNomeProduto());
+        produtoRM.setValor(produto.getValorProduto());
+        produtoRM.setStatus(produto.isStatusProduto());
+        return produtoRM;
     }
 
     @ApiOperation("Listar todos os produtos cadastrados")
@@ -37,6 +53,13 @@ public class ProdutoController {
         return new ResponseEntity<List<ProdutoRM>>(produtosRepresentationModel, HttpStatus.OK);
     }
 
+    @ApiOperation("Valor das compras (produtos status 'true')")
+    @GetMapping(value = "/total")
+    public String totalCompras(){
+        Double total = produtoService.totalCompras();
+        return "O total das compras foi de R$ " + total;
+    }
+
     @ApiOperation("Salvaum produto")
     @PostMapping(value = "/", produces = "application/json")
     public ResponseEntity<ProdutoRM> cadastra(@RequestBody ProdutoInput produtoInput) {
@@ -44,12 +67,12 @@ public class ProdutoController {
         return new ResponseEntity<ProdutoRM>(toModel(produto), HttpStatus.CREATED);
     }
 
-    @ApiOperation("Atualiza um produto")
-    @PutMapping(value = "/", produces = "application/json")
-    public ResponseEntity<ProdutoRM> atualiza(@RequestBody ProdutoInput produtoInput) {
-        Produto produto = produtoService.salva(toDomainObject(produtoInput));
-        return new ResponseEntity<ProdutoRM>(toModel(produto), HttpStatus.OK);
-    }
+//    @ApiOperation("Atualiza um produto")
+//    @PutMapping(value = "/", produces = "application/json")
+//    public ResponseEntity<ProdutoRM> atualiza(@RequestBody ProdutoInput produtoInput) {
+//        Produto produto = produtoService.salva(toDomainObject(produtoInput));
+//        return new ResponseEntity<ProdutoRM>(toModel(produto), HttpStatus.OK);
+//    }
 
     @ApiOperation("Deleta um produto")
     @DeleteMapping
@@ -83,26 +106,4 @@ public class ProdutoController {
         return new ResponseEntity<ProdutoRM>(produtoRM, HttpStatus.OK);
     }
 
-    private List<ProdutoRM> toCollectionModel(List<Produto> produtos){
-        return produtos.stream().map(produto -> toModel(produto)).collect(Collectors.toList());
-    }
-
-    private Produto toDomainObject(ProdutoInput produtoInput){
-        Produto produto = new Produto();
-        produto.setId(produtoInput.getId());
-        produto.setCategoria(produtoInput.getCategoria());
-        produto.setNomeProduto(produtoInput.getNomeInput());
-        produto.setValorProduto(produtoInput.getValorInput());
-        produto.setStatusProduto(produtoInput.isStatus());
-        return produto;
-    }
-    private ProdutoRM toModel(Produto produto){
-        ProdutoRM produtoRM = new ProdutoRM();
-        produtoRM.setId(produto.getId());
-        produtoRM.setCategoria(produto.getCategoria());
-        produtoRM.setNomeProduto(produto.getNomeProduto());
-        produtoRM.setValorProduto(produto.getValorProduto());
-        produtoRM.setStatusProduto(produto.isStatusProduto());
-        return produtoRM;
-    }
 }

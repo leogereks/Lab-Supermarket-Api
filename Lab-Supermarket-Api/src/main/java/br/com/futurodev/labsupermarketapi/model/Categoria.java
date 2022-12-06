@@ -29,7 +29,6 @@ public class Categoria implements Serializable {
         Categoria categoria = (Categoria) o;
         return id.equals(categoria.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);

@@ -9,6 +9,6 @@ import java.util.ArrayList;
 
 @Repository
 public interface CategoriaRepo extends JpaRepository<Categoria, Long> {
-    @Query(value = "from Categoria c where upper(c.descricao_categoria) like %?1%")
+    @Query(value = "from Categoria c where upper(c.descricaoCategoria) like %?1%")
     ArrayList<Categoria>buscaDescricao(String descricao);
 }
