@@ -58,13 +58,6 @@ public class CategoriaController {
         return new ResponseEntity<CategoriaRM>(toModel(categoria), HttpStatus.CREATED);
     }
 
-//    @ApiOperation("Atualiza categoria")
-//    @PostMapping(value = "/",produces = "application/json")
-//    public ResponseEntity<CategoriaRM>atualiza(@RequestBody CategoriaInput categoriaInput) {
-//        Categoria categoria = categoriaService.salva(toDomainObject(categoriaInput));
-//        return new ResponseEntity<CategoriaRM>(toModel(categoria), HttpStatus.OK);
-//    }
-
     @ApiOperation("Deletar categoria")
     @DeleteMapping(value = "/")
     @ResponseBody

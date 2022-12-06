@@ -26,12 +26,14 @@ public class SfConfig extends WebMvcConfigurationSupport {
 
     private ApiInfo metaData(){
         return new ApiInfoBuilder()
-                .title("lab-supermarket-api projeto 2 modulo 3")
-                .description("lab-supermarket-api")
+                .title("Lab-Supermarket-Api")
+                .description("Projeto II - FuturoDEV SENAI" +
+                        " Aplicaçao back end Spring Boot e PostgreSQL")
                 .version("1.0.0")
+                .license("By: Leonardo Gereks")
+                .licenseUrl("https://github.com/leogereks")
                 .build();
     }
-
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")

@@ -67,12 +67,12 @@ public class ProdutoController {
         return new ResponseEntity<ProdutoRM>(toModel(produto), HttpStatus.CREATED);
     }
 
-//    @ApiOperation("Atualiza um produto")
-//    @PutMapping(value = "/", produces = "application/json")
-//    public ResponseEntity<ProdutoRM> atualiza(@RequestBody ProdutoInput produtoInput) {
-//        Produto produto = produtoService.salva(toDomainObject(produtoInput));
-//        return new ResponseEntity<ProdutoRM>(toModel(produto), HttpStatus.OK);
-//    }
+    @ApiOperation("Atualiza um produto")
+    @PutMapping(value = "/", produces = "application/json")
+    public ResponseEntity<ProdutoRM> atualiza(@RequestBody ProdutoInput produtoInput) {
+        Produto produto = produtoService.salva(toDomainObject(produtoInput));
+        return new ResponseEntity<ProdutoRM>(toModel(produto), HttpStatus.OK);
+    }
 
     @ApiOperation("Deleta um produto")
     @DeleteMapping
