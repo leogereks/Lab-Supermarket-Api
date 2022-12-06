@@ -21,7 +21,6 @@ public class Categoria implements Serializable {
     private String nomeCategoria;
 
     private String descricaoCategoria;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
