@@ -9,7 +9,7 @@
 - Faça download do arquivo zip do repositorio
 - Faça extraçao do zip e abra o projeto na IDE
 - Crie um banco de dados PostgreSQL referente configuraçoes do application.properties
-- Para primeira nicialização, recomenda-se definir no application.properties update antes do create-drop
+- Para primeira inicialização, recomenda-se definir no application.properties update antes do create-drop
 
 # Entity-Relationship Diagram (ERD)
 
