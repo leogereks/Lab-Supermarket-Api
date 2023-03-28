@@ -1,8 +1,7 @@
 # LAB-Supermarket-M03P02
 
-- Projeto 2 referente ao módulo 3 FuturoDEV SENAI
-- Spring Boot / PostgreSQL
-
+- Spring Boot
+- PostgreSQL
 
 # Instruções para iniciar o projeto
 
